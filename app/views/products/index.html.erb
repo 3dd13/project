@@ -1,0 +1,71 @@
+<h2>Choose Your Plan</h2>
+
+<div class="row">
+  <% @subscription_products.each do |product| %>
+    <div class="col-4 col-sm-4 col-lg-3 text-center">
+      <p><%= image_tag(product.image_url) %></p>
+      <p><%= "#{product.name} Subscription"%></p>
+      <p><%= number_to_currency(product.price) %> Per Month</p>
+      <td><%= button_to 'Add to Cart', cart_items_path(:product_id => product) %>      
+    </div>  
+  <% end %>
+</div> <!-- .row -->
+
+<br>
+
+<h2>Buy A Single Pak</h2>
+
+<div class="row">
+  <% @single_products.each do |product| %>
+    <div class="col-4 col-sm-4 col-lg-3 text-center">
+      <a href="#test_modal" data-toggle="modal"><%= image_tag(product.image_url) %></a>
+        <div class="modal fade" id="test_modal">
+          <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h2><%= product.name %></h2>
+            <p><%= product.price %></p>
+          </div>
+          <div class="modal-body">
+            
+            <div class="row">
+              <div class="col-5 col-sm-6 col-lg-5">
+                <img src="http://placehold.it/640x540" width="100%">
+              </div>
+                        
+              <div class="col-2 col-sm-6 col-lg-2">
+                <ul class="list-unstyled">
+                  <li><img src="http://placehold.it/98x98"></li><br>
+                  <li><img src="http://placehold.it/98x98"></li><br>
+                  <li><img src="http://placehold.it/98x98"></li><br>
+                </ul> 
+              </div>
+            
+              <div class="col-5 col-sm-6 col-lg-5">
+                <h2>Description of this pak.</h2>
+                <p>All the materials are included in the box to create:</p>
+                <ul>
+                  <li> Activity 1:  Description of 1</li>
+                  <li> Activity 2:  Description of 2</li>
+                  <li> Activity 3:  Description of 3</li>
+                </ul>             
+              </div>
+              
+              <%= button_to 'Add to Cart', cart_items_path(:product_id => product) %>      
+            
+            </div> <!-- .row in modal-body-->
+          </div>  <!-- .modal-body -->
+
+          <div class="modal-footer">
+          </div>
+        </div> <!-- .modal -->
+      <br>
+      <br>  
+      <p><%= "#{product.name} Pak"%></p>
+      <p><%= number_to_currency(product.price) %> Per Month</p>  
+      <td><%= button_to 'Add to Cart', cart_items_path(:product_id => product) %>      
+    </div>  
+  <% end %>
+</div> <!-- .row -->
+
+
+<br>

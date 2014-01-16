@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shopping Cart</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Spend</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cart.cart_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.product.price * item.quantity) %></td>
+        <td><%= link_to 'Edit', edit_cart_item_path(item) %></td>
+        <td><%= link_to 'Destroy', cart_item_path(item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td><b>Total Spend</b></td>
+        <td></td>
+        <td></td>
+        <td><b><%= number_to_currency(@total_spend) %></b></td>
+      </tr> 
+  </tbody>
+</table>
+
+
+<br>
+
+<%= button_to 'Empty Cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>
