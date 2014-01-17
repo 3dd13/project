@@ -6,7 +6,8 @@
       <p><%= image_tag(product.image_url) %></p>
       <p><%= "#{product.name} Subscription"%></p>
       <p><%= number_to_currency(product.price) %> Per Month</p>
-      <td><%= button_to 'Add to Cart', cart_items_path(:product_id => product) %>      
+      <%= button_to 'Add to Cart', cart_items_path(:product_id => product) %> 
+
     </div>  
   <% end %>
 </div> <!-- .row -->
@@ -23,13 +24,13 @@
           <div class="modal-header">
             <a class="close" data-dismiss="modal">&times;</a>
             <h2><%= product.name %></h2>
-            <p><%= product.price %></p>
+            <p><%= number_to_currency(product.price) %></p>
           </div>
           <div class="modal-body">
             
             <div class="row">
               <div class="col-5 col-sm-6 col-lg-5">
-                <img src="http://placehold.it/640x540" width="100%">
+                 <%= image_tag(product.image_url) %>
               </div>
                         
               <div class="col-2 col-sm-6 col-lg-2">
@@ -61,7 +62,7 @@
       <br>
       <br>  
       <p><%= "#{product.name} Pak"%></p>
-      <p><%= number_to_currency(product.price) %> Per Month</p>  
+      <p><%= number_to_currency(product.price) %></p>  
       <td><%= button_to 'Add to Cart', cart_items_path(:product_id => product) %>      
     </div>  
   <% end %>

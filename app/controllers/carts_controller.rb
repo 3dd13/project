@@ -11,22 +11,23 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-
-    @total_spend = 0
-    @cart.cart_items.each do |item|
-      @total_spend += item.product.price * item.quantity
-    end
-
+    
     begin
       @cart = Cart.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to products_url, :notice => 'Invalid Cart'
+      return     
     else
       respond_to do |format|
         format.html # show.html.erb
         format.xml { render :xml => @cart }
       end
+    end
+
+    @total_spend = 0
+    @cart.cart_items.each do |item|
+      @total_spend += item.product.price * item.quantity
     end
   end
 
@@ -84,7 +85,7 @@ class CartsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_cart
+    def set_cart 
       @cart = Cart.find(params[:id])
     end
 
