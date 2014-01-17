@@ -19,13 +19,13 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  home: "Home"
-  products: "Products"
-  view cart: "View Cart"
-  sign out: "Sign Out"
-  user log in: "User Log In"
-  user sign up: "User Sign Up"
-  user sign out: "User Sign Out"
-  admin sign out: "Admin Sign Out"
-
+zh-TW:
+  home: "首頁"
+  products: "產品"
+  view cart: "購物車"
+  sign out: "登出"
+  user log in: "用戶登錄"
+  user sign up: "用戶註冊"
+  user sign out: "退出"
+  admin sign out: "管理退出"
+  

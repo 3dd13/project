@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /orders
   # GET /orders.json
@@ -15,8 +16,15 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @cart = current_cart
+    @total_spend = 0
+    @cart.cart_items.each do |item|
+      @total_spend += item.product.price * item.quantity
+    end
+
+
+    @cart = current_cart
     if @cart.cart_items.empty?
-      redirect_to products_url, :notice => "Your cart is empty"
+      redirect_to products_path, :notice => "Your cart is empty"
       return
     end
     

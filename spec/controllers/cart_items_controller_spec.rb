@@ -32,8 +32,8 @@ describe CartItemsController do
 
   describe "GET index" do
     it "assigns all cart_items as @cart_items" do
-      cart_item = CartItem.create! valid_attributes
-      get :index, {}, valid_session
+      cart_item = FactoryGirl.create(:cart_item)
+      get :index
       assigns(:cart_items).should eq([cart_item])
     end
   end

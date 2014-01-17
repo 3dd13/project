@@ -29,13 +29,15 @@
         <td><b>Total Spend</b></td>
         <td></td>
         <td></td>
-        <td><b><%= number_to_currency(@total_spend) %></b></td>
+        <td class="total_spend"><b><%= number_to_currency(@total_spend) %></b></td>
       </tr> 
   </tbody>
 </table>
 
 
 <br>
-
-<%= button_to 'Check Out', new_order_path, :method => :get %><br>
-<%= button_to 'Empty Cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>
+<div class="cartnavbuttons">
+    <%= link_to 'Continue Shopping', products_path, :method => :get %>
+    <%= link_to 'Check Out', new_order_path, :method => :get, :class => 'btn btn-success'  %>
+    <%= link_to 'Empty Cart', @cart, :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-default'  %>
+</div>

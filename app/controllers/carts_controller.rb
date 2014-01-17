@@ -12,6 +12,11 @@ class CartsController < ApplicationController
   # GET /carts/1.json
   def show
     
+    @total_spend = 0
+    @cart.cart_items.each do |item|
+      @total_spend += item.product.price * item.quantity
+    end
+    
     begin
       @cart = Cart.find(params[:id])
     rescue ActiveRecord::RecordNotFound
@@ -25,10 +30,7 @@ class CartsController < ApplicationController
       end
     end
 
-    @total_spend = 0
-    @cart.cart_items.each do |item|
-      @total_spend += item.product.price * item.quantity
-    end
+    
   end
 
   # GET /carts/new

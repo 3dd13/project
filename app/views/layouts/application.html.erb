@@ -26,8 +26,10 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><%= link_to "Home", root_path %></li>
-                <li><%= link_to "Products", products_path %></li>
+                <li><%= link_to "ENG", root_path(locale:"en") %></li>
+                <li><%= link_to "中文", root_path(locale:"zh-TW") %></li>
+                <li><%= link_to I18n.t("home"), root_path %></li>
+                <li><%= link_to I18n.t("products"), products_path %></li>
                 <!-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -43,17 +45,17 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <% if current_admin %>
-                  <li><%= link_to "Admin Sign Out", destroy_admin_session_path, method: :delete %></li>
+                  <li><%= link_to I18n.t("admin sign out"), destroy_admin_session_path, method: :delete %></li>
                 <% end %>
 
                 <% if current_user %>
                   <% unless session[:cart_id].nil? %>
-                    <li><%= link_to "View Cart", "/carts/#{session[:cart_id]}" %></li>
+                    <li><%= link_to I18n.t("view cart"), "/carts/#{session[:cart_id]}" %></li>
                   <% end %>
-                  <li><%= link_to "#{current_user.email} Sign Out", destroy_user_session_path, method: :delete %></li>
+                  <li><%= link_to "#{current_user.email} " + I18n.t("sign out"), destroy_user_session_path, method: :delete %></li>
                 <% else %>
-                  <li><%= link_to "User Log In", new_user_session_path %></li>
-                  <li><%= link_to "User Sign Up", "/users/sign_up" %></li>
+                  <li><%= link_to I18n.t("user log in"), new_user_session_path %></li>
+                  <li><%= link_to I18n.t("user sign up"), new_user_registration_path %></li>
                 <% end %> 
               </ul>
             </div>

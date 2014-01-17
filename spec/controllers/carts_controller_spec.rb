@@ -32,15 +32,15 @@ describe CartsController do
 
   describe "GET index" do
     it "assigns all carts as @carts" do
-      cart = Cart.create! valid_attributes
-      get :index, {}, valid_session
+      cart = FactoryGirl.create(:cart)
+      get :index
       assigns(:carts).should eq([cart])
     end
   end
 
   describe "GET show" do
     it "assigns the requested cart as @cart" do
-      cart = Cart.create! valid_attributes
+      cart = FactoryGirl.create(:cart)
       get :show, {:id => cart.to_param}, valid_session
       assigns(:cart).should eq(cart)
     end
@@ -48,7 +48,8 @@ describe CartsController do
 
   describe "GET new" do
     it "assigns a new cart as @cart" do
-      get :new, {}, valid_session
+      cart = FactoryGirl.create(:cart)
+      get :new
       assigns(:cart).should be_a_new(Cart)
     end
   end
